@@ -5,10 +5,10 @@ int[] even = new int[50];
 int[] odd = new int[50];
 
 for(int i = 0; i <= 100; i++){
-    if(i%2==0  && evenCounter < 50){
-        even[evenCounter] = i ;
-        evenCounter+=1;
-    }else if(i % 2 != 0 && oddCounter < 50){
+    if(i % 2 == 0 && evenCounter < 50){
+        even[evenCounter] = i;
+        evenCounter += 1;
+    } else if(i % 2 != 0 && oddCounter < 50){
         odd[oddCounter] = i;
         oddCounter += 1;
     }
