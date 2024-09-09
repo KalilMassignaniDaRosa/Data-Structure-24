@@ -54,5 +54,5 @@ for (int row = 0; row < map.GetLength(0); row++){
     }
     Console.WriteLine();
 }
-Console.ForegroundColor = ConsoleColor.Gray;
 
+Console.ForegroundColor = ConsoleColor.Gray;
