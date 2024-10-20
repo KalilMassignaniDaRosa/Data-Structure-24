@@ -7,6 +7,7 @@ namespace CockTailSort
 {
     public class CockTailSort
     {
+<<<<<<< HEAD
         public static T[] Sort<T>(T[] array) where T : IComparable
         {
             bool swapped = true;
@@ -57,6 +58,22 @@ namespace CockTailSort
         public static void Swap<T>(
             T[] array,
             int first,
+=======
+        public static T[] Sort<T>(
+            T[] array, 
+            int lower, 
+            int upper
+        ) where T : IComparable
+        {
+            bool swapped = false;
+            
+            return array;
+        }
+
+        public static void Swap<T>(
+            T[] array, 
+            int first, 
+>>>>>>> d3fae094c5d43913fef429f76c4bd8eeeea6ce14
             int second
         )
         {
@@ -65,11 +82,17 @@ namespace CockTailSort
             array[second] = temp;
         }
 
+<<<<<<< HEAD
         public static void Print<T>(T[] array)
         {
             Console.Write("[ ");
             foreach (T a in array)
             {
+=======
+        public static void Print<T>(T[] array){
+            Console.Write("[ ");
+            foreach (T a in array){
+>>>>>>> d3fae094c5d43913fef429f76c4bd8eeeea6ce14
                 Thread.Sleep(100);
                 Console.Write($"{a} ");
             }
