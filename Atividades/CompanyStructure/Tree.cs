@@ -17,9 +17,8 @@ namespace CompanyStructure
             Console.WriteLine($"Id: {node.Data!.Id}");
             Console.WriteLine("==========================");
 
-
-            if(node.Children!.Count() > 0)
-                foreach(var i in node.Children!)
+            if (node.Children! != null)
+                foreach (var i in node.Children!)
                     PrintTree(i);
         }
     }
