@@ -45,9 +45,10 @@ namespace BinaryTree
             }
         }
 
-        public void List<BinaryTreeNode<T>> Traverse(TraversalEnum mode)
+        public List<BinaryTreeNode<T>> Traverse(TraversalEnum mode)
         {
             List<BinaryTreeNode<T>> nodes = new();
+            
             switch(mode)
             {
                 case TraversalEnum.PREORDER:
@@ -60,6 +61,17 @@ namespace BinaryTree
                     TraversePostOrder(Root!, nodes);
                 break;
             }
+            return nodes;
+        }
+
+        public int GetTreeHeight()
+        {
+            int height = 0;
+            foreach(BinaryTreeNode<T> node in Traverse(TraversalEnum.PREORDER))
+            {
+                height = Math.Max(height, node.GetNodeHeight());
+            }
+            return height;
         }
     }
 }
