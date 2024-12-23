@@ -1,4 +1,4 @@
-﻿using ArvoresBasicas;
+﻿using BasicTree;
 
 Tree<int> tree = new Tree<int>();
 tree.Root = new Node<int>(){ Data = 100};

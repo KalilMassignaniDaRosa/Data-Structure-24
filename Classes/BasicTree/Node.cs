@@ -1,4 +1,4 @@
-namespace ArvoresBasicas
+namespace BasicTree
 {
     public class Node<T>
     {

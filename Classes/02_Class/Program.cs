@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-using Aula02;
+using _02_Class;
 
 Person person = new Person();
 Console.WriteLine(person.Name);
@@ -12,7 +12,7 @@ person2.Name = "Vladmir Ilich Ulyanov";
 person2.Age = 70;
 Console.WriteLine(person2.Name);
 
-//Atibuição inbutida
+// Atibuicpo inbutida
 Person person3= new Person(){
     Name = "Leonel Brizola",
     Age = 80
