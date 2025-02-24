@@ -17,13 +17,19 @@ namespace AvlTree
             }
             return node.Height;
         }
-        
+
+        public Node<T>? GetRoot()
+        {
+            return root;
+        }
+
+        // Fator de balanceamento = esquerda - direita
         private int GetBalanceFactor(Node<T> node)
         {
-            int leftHeight = GetHeight(node.Left);  
-            int rightHeight = GetHeight(node.Right);  
+            int leftHeight = GetHeight(node.Left);
+            int rightHeight = GetHeight(node.Right);
 
-            return leftHeight - rightHeight;  
+            return leftHeight - rightHeight;
         }
 
         private Node<T> RotateRight(Node<T> y)
@@ -31,9 +37,11 @@ namespace AvlTree
             Node<T> x = y.Left;
             Node<T> T2 = x.Right;
 
+            // Realiza rotacao
             x.Right = y;
             y.Left = T2;
 
+            // Atualiza as alturas
             y.Height = Math.Max(GetHeight(y.Left), GetHeight(y.Right)) + 1;
             x.Height = Math.Max(GetHeight(x.Left), GetHeight(x.Right)) + 1;
 
@@ -54,15 +62,15 @@ namespace AvlTree
             return y;
         }
 
-        private Node<T> Insert(Node<T> node, T value)
+        private Node<T> Insert(Node<T> node, T data)
         {
             if (node == null)
-                return new Node<T>(value);
+                return new Node<T>(data);
 
-            if (value.CompareTo(node.Value) < 0)
-                node.Left = Insert(node.Left, value);
-            else if (value.CompareTo(node.Value) > 0)
-                node.Right = Insert(node.Right, value);
+            if (data.CompareTo(node.Data) < 0)
+                node.Left = Insert(node.Left, data);
+            else if (data.CompareTo(node.Data) > 0)
+                node.Right = Insert(node.Right, data);
             else
                 return node;
 
@@ -70,19 +78,23 @@ namespace AvlTree
 
             int balance = GetBalanceFactor(node);
 
-            if (balance > 1 && value.CompareTo(node.Left.Value) < 0)
+            // Caso Left-Left (LL): Subarvore esquerda desbalanceada
+            if (balance > 1 && data.CompareTo(node.Left.Data) < 0)
                 return RotateRight(node);
 
-            if (balance < -1 && value.CompareTo(node.Right.Value) > 0)
+            // Caso Right-Right (RR): Subarvore direita desbalanceada
+            if (balance < -1 && data.CompareTo(node.Right.Data) > 0)
                 return RotateLeft(node);
 
-            if (balance > 1 && value.CompareTo(node.Left.Value) > 0)
+            // Caso Left-Right (LR): A subarvore esquerda tem um no a direita desbalanceado
+            if (balance > 1 && data.CompareTo(node.Left.Data) > 0)
             {
                 node.Left = RotateLeft(node.Left);
                 return RotateRight(node);
             }
 
-            if (balance < -1 && value.CompareTo(node.Right.Value) < 0)
+            // Caso Right-Left (RL): A subarvore direita tem um no a esquerda desbalanceado
+            if (balance < -1 && data.CompareTo(node.Right.Data) < 0)
             {
                 node.Right = RotateRight(node.Right);
                 return RotateLeft(node);
@@ -91,7 +103,7 @@ namespace AvlTree
             return node;
         }
 
-        public void Add(T value) => root = Insert(root!, value);
+        public void Add(T data) => root = Insert(root!, data);
 
         public IEnumerable<T> GetInorderEnumerator()
         {
@@ -104,7 +116,7 @@ namespace AvlTree
         {
             if (node == null) return;
             InOrder(node.Left, list);
-            list.Add(node.Value);
+            list.Add(node.Data!);
             InOrder(node.Right, list);
         }
 
@@ -120,7 +132,7 @@ namespace AvlTree
             if (node == null) return;
             PostOrder(node.Left, list);
             PostOrder(node.Right, list);
-            list.Add(node.Value);
+            list.Add(node.Data!);
         }
 
         public IEnumerable<T> GetBreadthFirstEnumerator()
@@ -134,7 +146,7 @@ namespace AvlTree
             while (queue.Count > 0)
             {
                 Node<T> node = queue.Dequeue();
-                list.Add(node.Value);
+                list.Add(node.Data!);
 
                 if (node.Left != null) queue.Enqueue(node.Left);
                 if (node.Right != null) queue.Enqueue(node.Right);
